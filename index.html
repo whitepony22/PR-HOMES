@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" type="image/png" href="img/icon.png" />
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <title>PR Homes | Serene Living, Redefined</title>
+
+    <script defer src="script.js"></script>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="nav nav--init">
+      <div class="nav__logo-wrapper">
+        <img src="img/logo_icon.png" class="nav__logo" alt="Logo in header" />
+      </div>
+      <ul class="nav__links">
+        <li class="nav__item"><a class="nav__link active" href="#home">Home</a></li>
+        <li class="nav__item"><a class="nav__link" href="#rooms">Rooms</a></li>
+        <li class="nav__item"><a class="nav__link" href="#facilities">Facilities</a></li>
+        <li class="nav__item"><a class="nav__link" href="#location">Location</a></li>
+        <li class="nav__item"><a class="nav__link" href="#reviews">Reviews</a></li>
+        <li class="nav__item"><a class="nav__link" href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+    <!-- <div class="nav-trigger"></div> -->
+
+    <header class="home" id="home">
+      <div class="home__overlay"></div>
+      <div class="home__content">
+        <div class="home__left">
+          <img src="img/title_logo.svg" alt="PR Homes Title" class="home__title-img" />
+          <h4 class="home__tagline">Your peaceful getaway in the heart of the city.</h4>
+        </div>
+
+        <div class="home__right">
+          <div class="summary-point">
+            <div class="summary-icon">
+              <!-- Replace with your SVG icon -->
+              <img src="icons/location.svg" alt="Location" />
+            </div>
+            <p>Pathadipalam, Kochi, Kerala</p>
+          </div>
+
+          <div class="summary-point">
+            <div class="summary-icon">
+              <img src="icons/rooms.svg" alt="Rooms" />
+            </div>
+            <p>8 rooms with 1–3 BDK</p>
+          </div>
+
+          <div class="summary-point">
+            <div class="summary-icon">
+              <img src="icons/suites.svg" alt="Suites" />
+            </div>
+            <p>3 distinct suites</p>
+          </div>
+
+          <div class="summary-point">
+            <div class="summary-icon">
+              <img src="icons/audience.svg" alt="Guests" />
+            </div>
+            <p>Short stays, families, business guests</p>
+          </div>
+        </div>
+
+        <!-- Booking form below tagline -->
+        <form class="booking__form">
+          <div class="booking__field">
+            <label for="arrival">Arrival</label>
+            <input type="date" id="arrival" name="arrival" />
+          </div>
+          <div class="booking__field">
+            <label for="room">Room Type</label>
+            <select id="room" name="room">
+              <option value="" disabled selected>Select a room</option>
+              <option value="deluxe">Deluxe Room 1BDK</option>
+              <option value="deluxe">Deluxe Room 2BDK</option>
+              <option value="premium">Family Suite 2BDK</option>
+              <option value="premium">Family Suite 3BDK</option>
+              <option value="family">Regular Room 1BDK</option>
+              <option value="family">Regular Room 2BDK</option>
+              <option value="family">Regular Room 3BDK</option>
+            </select>
+          </div>
+          <div class="booking__field">
+            <label for="duration">Duration</label>
+            <input type="number" id="duration" name="duration" min="1" value="2" />
+          </div>
+          <button type="submit" class="btn booking__btn btn--show-modal">BOOK NOW &rsaquo;</button>
+        </form>
+      </div>
+      </div>
+    </header>
+`   
+    <!-- Trigger for scroll threshold -->
+    <div class="scroll-sentinel"></div>
+
+    <section class="section" id="rooms">
+      <div class="section__title">
+        <h2 class="section__description">Rooms</h2>
+        <h3 class="section__header">Cozy stays designed with elegance.</h3>
+      </div>
+
+      <!-- Tab Buttons -->
+      <div class="rooms__tabs">
+        <button class="tab tab--active" data-tab="1">Deluxe Room</button>
+        <button class="tab" data-tab="2">Premium Suite</button>
+        <button class="tab" data-tab="3">Family Cottage</button>
+      </div>
+
+      <!-- Tab Contents -->
+      <div class="rooms__slider">
+        <div class="rooms__content rooms__content--1 content--active">
+          <div class="room-card">
+            <img src="img/deluxe.webp" alt="Deluxe Room" />
+            <div class="room-card__content">
+              <h4 class="room-card__title">Deluxe Room</h4>
+              <ul class="room-card__features">
+                <li>Garden Views</li>
+                <li>30–35 sqm</li>
+                <li>Rainshower + Bath</li>
+                <li>Queen Bed</li>
+              </ul>
+              <div class="room-card__footer">
+                <span class="room-card__price">₹2999 / night</span>
+                <button class="btn suite-btn">Learn More</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rooms__content rooms__content--2">
+          <div class="room-card">
+            <img src="img/premium.jpg" alt="Premium Suite" />
+            <div class="room-card__content">
+              <h4 class="room-card__title">Premium Suite</h4>
+              <ul class="room-card__features">
+                <li>Balcony View</li>
+                <li>40 sqm</li>
+                <li>Rain Shower + Bath</li>
+                <li>King Bed</li>
+              </ul>
+              <div class="room-card__footer">
+                <span class="room-card__price">₹3999 / night</span>
+                <button class="btn suite-btn">Learn More</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rooms__content rooms__content--3">
+          <div class="room-card">
+            <img src="img/family.jpg" alt="Family Cottage" />
+            <div class="room-card__content">
+              <h4 class="room-card__title">Family Cottage</h4>
+              <ul class="room-card__features">
+                <li>Private Lawn</li>
+                <li>50 sqm</li>
+                <li>2 Bedrooms + Kitchen</li>
+                <li>Perfect for families</li>
+              </ul>
+              <div class="room-card__footer">
+                <span class="room-card__price">₹4999 / night</span>
+                <button class="btn suite-btn">Learn More</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="section facilities-section" id="facilities">
+      <div class="section__title">
+        <h2 class="section__description">Facilities</h2>
+        <h3 class="section__header">Along with the perks of</h3>
+      </div>
+
+      <div class="facilities__strip">
+        <div class="facility-card">
+          <img src="img/lounge.webp" alt="Comfy Lounge" />
+          <div class="facility-card__overlay">
+            <h4>Comfy Lounge</h4>
+          </div>
+        </div>
+
+        <div class="facility-card">
+          <img src="img/dining.avif" alt="Dining" />
+          <div class="facility-card__overlay">
+            <h4>Common dining area</h4>
+          </div>
+        </div>
+
+        <div class="facility-card">
+          <img src="img/kitchen.jpg" alt="Kitchen" />
+          <div class="facility-card__overlay">
+            <h4>Finest Kitchen</h4>
+          </div>
+        </div>
+
+        <div class="facility-card">
+          <img src="img/balcony.jpeg" alt="Balcony" />
+          <div class="facility-card__overlay">
+            <h4>Fresh Balcony</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="location">
+      <div class="section__title">
+        <h2 class="section__description">Location</h2>
+        <h3 class="section__header">In the heart of convenience</h3>
+      </div>
+
+      <div class="location__map">
+        <iframe
+          src="https://maps.google.com/maps?q=Pathadipalam,%20Kochi&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          frameborder="0"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <div class="location__grid">
+        <div class="location__info location__info--nearby">
+          <h4>Nearby Attractions</h4>
+          <ul class="location__list">
+            <li><span class="place">Lulu Mall</span><span class="distance">1.2 km</span></li>
+            <li><span class="place">InfoPark</span><span class="distance">5.6 km</span></li>
+            <li><span class="place">Medical College</span><span class="distance">3.1 km</span></li>
+            <li><span class="place">Railway Station</span><span class="distance">6.7 km</span></li>
+          </ul>
+        </div>
+
+        <div class="location__info location__info--guide">
+          <h4>Area Guide</h4>
+          <div class="attractions__strip">
+            <div class="attraction-card">
+              <img src="img/attraction-lulu.jpg" alt="Lulu Mall" />
+              <div class="attraction-card__title">Lulu Mall</div>
+            </div>
+
+            <div class="attraction-card">
+              <img src="img/attraction-infopark.jpg" alt="InfoPark" />
+              <div class="attraction-card__title">InfoPark</div>
+            </div>
+
+            <div class="attraction-card">
+              <img src="img/attraction-metro.jpeg" alt="Kochi Metro" />
+              <div class="attraction-card__title">Kochi Metro</div>
+            </div>
+
+            <!-- Add more cards as needed -->
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="section" id="reviews">
+      <div class="section__title section__title--testimonials">
+        <h2 class="section__description">Reviews</h2>
+        <h3 class="section__header">What our customers say in the Google Map reviews</h3>
+      </div>
+      <div class="slider">
+        <div class="slider_track">
+          <div class="slide">
+            <div class="testimonial">
+              <h5 class="testimonial__header">Absolutely wonderful stay!</h5>
+              <blockquote class="testimonial__text">
+                I loved the calm ambiance, the hospitality, and the location. Would definitely come back again.
+              </blockquote>
+              <address class="testimonial__author">
+                <img src="img/user-1.jpg" alt="" class="testimonial__photo" />
+                <h6 class="testimonial__name">Neha Rajan</h6>
+                <p class="testimonial__location">Kochi, India</p>
+              </address>
+            </div>
+          </div>
+        </div>
+        <button class="slider__btn slider__btn--left"><</button>
+        <button class="slider__btn slider__btn--right">></button>
+        <div class="dots"></div>
+      </div>
+    </section>
+
+    <footer class="footer" id="contact">
+      <div class="footer__grid">
+        
+        <!-- Left: Links -->
+        <div class="footer__col">
+          <ul class="footer__nav">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cancellation Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Center: Logo -->
+        <div class="footer__col footer__logo-col">
+          <img src="img/logo.svg" alt="PR Homes Logo" class="footer__logo" />
+          <p class="footer__copyright">&copy; 2025 PR Homes</p>
+        </div>
+
+        <!-- Right: Social + Contact us -->
+        <div class="footer__col footer__right">
+          <button class="btn btn--contact">Contact Us</button>
+          <div class="footer__socials">
+            <a href="#"><img src="icons/phone.svg" alt="Phone" /></a>
+            <a href="#"><img src="icons/mail.svg" alt="Mail" /></a>
+            <a href="#"><img src="icons/whatsapp.svg" alt="WhatsApp" /></a>
+            <a href="#"><img src="icons/instagram.svg" alt="Instagram" /></a>
+            <a href="#"><img src="icons/facebook.svg" alt="Facebook" /></a>
+            <a href="#"><img src="icons/twitter.svg" alt="Twitter" /></a>
+            <a href="#"><img src="icons/pinterest.svg" alt="Pinterest" /></a>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div class="modal modal--contact hidden">
+      <button class="btn--close-modal">&times;</button>
+      <h2 class="modal__header">Contact Us</h2>
+      <form class="modal__form">
+        <label for="name">Name</label>
+        <input type="text" id="name" required />
+        <label for="email">Email</label>
+        <input type="email" id="email" required />
+        <label for="message">Message</label>
+        <textarea id="message" rows="4" required></textarea>
+        <button class="btn">Send Message</button>
+      </form>
+    </div>
+    <div class="overlay hidden"></div>
+
+    <!-- MODAL -->
+    <div class="modal hidden">
+      <button class="btn--close-modal">&times;</button>
+      <h2 class="modal__header">Book your stay<br /><span class="highlight">quick & easy</span></h2>
+      <form class="modal__form">
+        <label>Full Name</label>
+        <input type="text" />
+        <label>Email Address</label>
+        <input type="email" />
+        <label>Arrival</label>
+        <input type="date" />
+        <label>Departure</label>
+        <input type="date" />
+        <label>Room Preference</label>
+        <input type="text" />
+        <button class="btn">Confirm Booking &rarr;</button>
+      </form>
+    </div>
+    <div class="overlay hidden"></div>
+  </body>
+</html>
