@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="style.css" />
     <title>PR Homes | Serene Living, Redefined</title>
 
-    <script defer src="script.js"></script>
   </head>
 
   <body>
@@ -92,7 +91,7 @@
             <label for="duration">Duration</label>
             <input type="number" id="duration" name="duration" min="1" value="2" />
           </div>
-          <button type="submit" class="btn booking__btn btn--show-modal">BOOK NOW &rsaquo;</button>
+          <button type="submit" class="btn booking__btn">BOOK NOW &rsaquo;</button>
         </form>
       </div>
       </div>
@@ -100,6 +99,56 @@
 `   
     <!-- Trigger for scroll threshold -->
     <div class="scroll-sentinel"></div>
+
+    
+    <!-- Booking Modal -->
+    <div class="modal modal--booking hidden">
+      <button class="btn--close-modal btn--close-booking">&times;</button>
+      <h2 class="modal__header">Confirm booking - quick & easy</h2>
+
+      <!-- Make this part scrollable -->
+      <div class="modal__scrollable">
+        <form class="modal__form" id="modalBookingForm">
+          <p class="availability" id="availability"></p>
+
+          <input type="hidden" id="modalRoom" />
+          <input type="hidden" id="modalArrival" />
+          <input type="hidden" id="modalDuration" />
+
+          <label>Full Name</label>
+          <input type="text" id="fullName" required />
+
+          <!-- Contact Method -->
+          <div class="modal__form-group">
+            <label>Preferred Contact Method(s)</label>
+            <div class="contact-methods">
+              <label><input type="checkbox" name="contactMethod" value="email" /> Email</label>
+              <label><input type="checkbox" name="contactMethod" value="phone" /> Phone Call</label>
+              <label><input type="checkbox" name="contactMethod" value="whatsapp" /> WhatsApp</label>
+            </div>
+          </div>
+
+          <!-- Dynamic Contact Field(s) -->
+          <div id="contactFields" class="modal__form-group"></div>
+
+          <!-- Terms -->
+          <div class="modal__form-group">
+            <label><input type="checkbox" required /> I agree to the terms and conditions</label>
+          </div>
+
+          <!-- Footer  -->
+          <div class="modal__footer">
+            <div class="modal__price-box">
+              <div class="modal__description" id="priceDescription"></div>
+              <div class="modal__price" id="priceTotal"></div>
+            </div>
+            <button type="submit" class="btn btn--confirm">Confirm Booking &rarr;</button>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+    <div class="overlay hidden"></div>
 
     <section class="section" id="rooms">
       <div class="section__title">
@@ -327,7 +376,7 @@
 
     <!-- Contact Modal -->
     <div class="modal modal--contact hidden">
-      <button class="btn--close-modal">&times;</button>
+      <button class="btn--close-modal btn--close-contact">&times;</button>
       <h2 class="modal__header">Contact Us</h2>
       <form class="modal__form">
         <label for="name">Name</label>
@@ -340,25 +389,9 @@
       </form>
     </div>
     <div class="overlay hidden"></div>
-
-    <!-- MODAL -->
-    <div class="modal hidden">
-      <button class="btn--close-modal">&times;</button>
-      <h2 class="modal__header">Book your stay<br /><span class="highlight">quick & easy</span></h2>
-      <form class="modal__form">
-        <label>Full Name</label>
-        <input type="text" />
-        <label>Email Address</label>
-        <input type="email" />
-        <label>Arrival</label>
-        <input type="date" />
-        <label>Departure</label>
-        <input type="date" />
-        <label>Room Preference</label>
-        <input type="text" />
-        <button class="btn">Confirm Booking &rarr;</button>
-      </form>
-    </div>
-    <div class="overlay hidden"></div>
+    
   </body>
+  
+  <script src="script.js" defer></script>
+
 </html>

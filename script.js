@@ -1,28 +1,5 @@
 'use strict';
 
-// MODAL
-const modal = document.querySelector('.modal');
-const overlay = document.querySelector('.overlay');
-const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
-const btnCloseModal = document.querySelector('.btn--close-modal');
-
-const openModal = e => {
-  e.preventDefault();
-  modal.classList.remove('hidden');
-  overlay.classList.remove('hidden');
-};
-const closeModal = () => {
-  modal.classList.add('hidden');
-  overlay.classList.add('hidden');
-};
-
-btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal));
-btnCloseModal.addEventListener('click', closeModal);
-overlay.addEventListener('click', closeModal);
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
-});
-
 // NAV STICKY ON SCROLL
 const nav = document.querySelector('.nav');
 const home = document.querySelector('.home');
@@ -244,12 +221,154 @@ document.querySelector('.slider__btn--right').addEventListener('click', () => {
 updateSlider();
 
 // Footer
+// document.querySelector('.btn--contact').addEventListener('click', () => {
+//   document.querySelector('.modal--contact').classList.remove('hidden');
+//   document.querySelector('.overlay').classList.remove('hidden');
+// });
+
+// document.querySelector('.btn--close-modal').addEventListener('click', () => {
+//   document.querySelector('.modal--contact').classList.add('hidden');
+//   document.querySelector('.overlay').classList.add('hidden');
+// });
+
+// === MODAL SETUP ===
+const overlay = document.querySelector('.overlay');
+const modals = {
+  booking: document.querySelector('.modal--booking'),
+  contact: document.querySelector('.modal--contact')
+};
+
+// === OPEN MODALS ===
+document.querySelectorAll('.btn--show-modal').forEach(btn =>
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    modals.booking.classList.remove('hidden');
+    overlay.classList.remove('hidden');
+  })
+);
+
 document.querySelector('.btn--contact').addEventListener('click', () => {
-  document.querySelector('.modal--contact').classList.remove('hidden');
-  document.querySelector('.overlay').classList.remove('hidden');
+  modals.contact.classList.remove('hidden');
+  overlay.classList.remove('hidden');
 });
 
-document.querySelector('.btn--close-modal').addEventListener('click', () => {
-  document.querySelector('.modal--contact').classList.add('hidden');
-  document.querySelector('.overlay').classList.add('hidden');
+// === CLOSE MODALS ===
+document.querySelector('.btn--close-booking').addEventListener('click', () => {
+  modals.booking.classList.add('hidden');
+  overlay.classList.add('hidden');
+});
+
+document.querySelector('.btn--close-contact').addEventListener('click', () => {
+  modals.contact.classList.add('hidden');
+  overlay.classList.add('hidden');
+});
+
+// === Close modals on overlay or ESC ===
+overlay.addEventListener('click', () => {
+  Object.values(modals).forEach(modal => modal.classList.add('hidden'));
+  overlay.classList.add('hidden');
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    const anyOpen = Object.values(modals).some(m => !m.classList.contains('hidden'));
+    if (anyOpen) {
+      Object.values(modals).forEach(modal => modal.classList.add('hidden'));
+      overlay.classList.add('hidden');
+    }
+  }
+});
+
+// === BOOKING FORM LOGIC ===
+const bookingForm = document.querySelector('.booking__form');
+const modalForm = document.getElementById('modalBookingForm');
+const availability = document.getElementById('availability');
+
+bookingForm.addEventListener('submit', e => {
+  
+  if (!bookingForm.checkValidity()) {
+    bookingForm.reportValidity(); // <- Show browser's warnings
+    return;
+  }
+
+  e.preventDefault();
+
+  const room = document.getElementById('room').value;
+  const arrival = document.getElementById('arrival').value;
+  const duration = parseInt(document.getElementById('duration').value);
+
+  if (!room || !arrival || !duration) {
+    alert('Please fill in all fields.');
+    return;
+  }
+
+  // Pricing logic
+  let rate = 2000;
+  if (room.includes('deluxe')) rate = 3000;
+  else if (room.includes('premium')) rate = 4500;
+
+  const total = rate * duration;
+
+  // Fill modal
+  document.getElementById('modalRoom').value = room;
+  document.getElementById('modalArrival').value = arrival;
+  document.getElementById('modalDuration').value = duration;
+
+  availability.textContent = `Your selected ${room.replace('-', ' ')} is available for your chosen dates.`;
+
+  document.getElementById('priceDescription').textContent =
+  `Estimated total for ${duration} nights:`;
+  document.getElementById('priceTotal').textContent =
+  `₹${total.toLocaleString()}`;
+
+  // Show modal
+  modals.booking.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+});
+
+// === CONTACT METHOD SELECTOR ===
+const contactFieldsContainer = document.getElementById('contactFields');
+const contactMethodCheckboxes = document.querySelectorAll('input[name="contactMethod"]');
+
+contactMethodCheckboxes.forEach(checkbox =>
+  checkbox.addEventListener('change', () => {
+    contactFieldsContainer.innerHTML = '';
+
+    if (document.querySelector('input[value="email"]:checked')) {
+      contactFieldsContainer.innerHTML += `
+        <label>Email Address</label>
+        <input type="email" name="contactEmail" required />
+      `;
+    }
+
+    if (document.querySelector('input[value="phone"]:checked')) {
+      contactFieldsContainer.innerHTML += `
+        <label>Phone Number</label>
+        <input type="tel" name="contactPhone" pattern="[0-9]{10}" placeholder="10-digit number" required />
+      `;
+    }
+
+    if (document.querySelector('input[value="whatsapp"]:checked')) {
+      contactFieldsContainer.innerHTML += `
+        <label>WhatsApp Number</label>
+        <input type="tel" name="contactWhatsapp" pattern="[0-9]{10}" placeholder="10-digit number" required />
+      `;
+    }
+
+    contactFieldsContainer.lastElementChild?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  })
+);
+
+// === FINAL SUBMIT ===
+modalForm.addEventListener('submit', e => {
+
+  if (!modalForm.checkValidity()) {
+    modalForm.reportValidity(); // <-- Triggers the native validation UI
+    return;
+  }
+
+  e.preventDefault();
+  alert('Booking confirmed! 🎉');
+  modals.booking.classList.add('hidden');
+  overlay.classList.add('hidden');
 });
